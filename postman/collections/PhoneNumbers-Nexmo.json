@@ -1,0 +1,765 @@
+{
+	"info": {
+		"_postman_id": "e057f32e-9ba8-4ee8-a716-37f79dd679fd",
+		"name": "PhoneNumbers-Nexmo",
+		"description": "The Numbers API lets you manage your numbers and buy new virtual numbers for use with Nexmo's APIs.\n## Prerequirement:\nYour project has to be in the production environment in order to use of this API.\nFor any questions, please contact our support team.\n\n---\n## [KPN API Store](https://developer.kpn.com/)<br/> [Getting Started](https://developer.kpn.com/getting-started)\n\n\n   ---\n\nContact Support:\n Name: API Support\n Email: api_developer@kpn.com",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "4406147-e057f32e-9ba8-4ee8-a716-37f79dd679fd"
+	},
+	"item": [
+		{
+			"name": "number",
+			"item": [
+				{
+					"name": "update",
+					"item": [
+						{
+							"name": "Update a number",
+							"id": "eae2ce77-d051-4455-a1b0-35cd316cccb8",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"description": "(Required) The two character country code in ISO 3166-1 alpha-2 format.",
+											"key": "country",
+											"value": "{{country_field}}"
+										},
+										{
+											"description": "(Required) An available inbound virtual number.",
+											"key": "msisdn",
+											"value": "{{msisdn_field}}"
+										},
+										{
+											"description": "An URL encoded URI to the webhook endpoint that handles inbound messages. Your webhook endpoint must be active before you make this request, Nexmo makes a `GET` request to your endpoint and checks that it returns a `200 OK` response. Set to empty string to clear.",
+											"key": "moHttpUr",
+											"value": ""
+										},
+										{
+											"description": "The associated system type for your SMPP client. For example `inbound`.",
+											"key": "moSmppSysType",
+											"value": ""
+										},
+										{
+											"description": "The voice webhook type. To be used together with `voiceCallbackValue`",
+											"key": "voiceCallbackType",
+											"value": "sip"
+										},
+										{
+											"description": "A SIP URI, telephone number or Application ID. To be used together with `voiceCallbackType`",
+											"key": "voiceCallbackValue",
+											"value": ""
+										},
+										{
+											"description": "A webhook URI for Nexmo to send a request to when a call ends.",
+											"key": "voiceStatusCallback",
+											"value": ""
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/number/update",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"number",
+										"update"
+									]
+								},
+								"description": "Change the behaviour of a number that you own"
+							},
+							"response": [
+								{
+									"id": "dbfa9e5c-4467-4ea4-ab91-ce527d74f3f4",
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/x-www-form-urlencoded"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"description": "(Required) The two character country code in ISO 3166-1 alpha-2 format.",
+													"key": "country",
+													"value": "{{country_field}}"
+												},
+												{
+													"description": "(Required) An available inbound virtual number.",
+													"key": "msisdn",
+													"value": "{{msisdn_field}}"
+												},
+												{
+													"description": "An URL encoded URI to the webhook endpoint that handles inbound messages. Your webhook endpoint must be active before you make this request, Nexmo makes a `GET` request to your endpoint and checks that it returns a `200 OK` response. Set to empty string to clear.",
+													"key": "moHttpUr",
+													"value": ""
+												},
+												{
+													"description": "The associated system type for your SMPP client. For example `inbound`.",
+													"key": "moSmppSysType",
+													"value": ""
+												},
+												{
+													"description": "The voice webhook type. To be used together with `voiceCallbackValue`",
+													"key": "voiceCallbackType",
+													"value": "sip"
+												},
+												{
+													"description": "A SIP URI, telephone number or Application ID. To be used together with `voiceCallbackType`",
+													"key": "voiceCallbackValue",
+													"value": ""
+												},
+												{
+													"description": "A webhook URI for Nexmo to send a request to when a call ends.",
+													"key": "voiceStatusCallback",
+													"value": ""
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/number/update",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"number",
+												"update"
+											]
+										},
+										"description": "Change the behaviour of a number that you own"
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error-code\": \"<string>\",\n  \"error-code-label\": \"<string>\"\n}"
+								}
+							]
+						}
+					],
+					"id": "f7590c14-5b66-4f24-aa88-426c1176812b"
+				},
+				{
+					"name": "search",
+					"item": [
+						{
+							"name": "Search available numbers",
+							"id": "3cefa194-15b4-4aa3-9061-112bb6999564",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/number/search?country={{country}}&pattern=&search_pattern=&type=mobile-lvn&features=SMS,SMS&features=SMS,VOICE&size=10&index=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"number",
+										"search"
+									],
+									"query": [
+										{
+											"key": "country",
+											"value": "{{country}}",
+											"description": "(Required) "
+										},
+										{
+											"key": "pattern",
+											"value": "",
+											"description": "A number pattern to search for."
+										},
+										{
+											"key": "search_pattern",
+											"value": "",
+											"description": "Strategy for matching pattern. Expected values: 0 (starts with, default), 1 (anywhere), 2 (ends with)."
+										},
+										{
+											"key": "type",
+											"value": "mobile-lvn",
+											"description": "The type of number to search for. By default it takes landline."
+										},
+										{
+											"key": "features",
+											"value": "SMS,SMS"
+										},
+										{
+											"key": "features",
+											"value": "SMS,VOICE"
+										},
+										{
+											"key": "size",
+											"value": "10",
+											"description": "Page size"
+										},
+										{
+											"key": "index",
+											"value": "1",
+											"description": "Page index"
+										}
+									]
+								},
+								"description": "Retrieve inbound numbers that are available for a given country."
+							},
+							"response": [
+								{
+									"id": "e76e6a80-dbfa-4051-889d-b1edce9bd69b",
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/number/search?country={{country}}&pattern=&search_pattern=&type=mobile-lvn&features=SMS,SMS&features=SMS,VOICE&size=10&index=1",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"number",
+												"search"
+											],
+											"query": [
+												{
+													"key": "country",
+													"value": "{{country}}",
+													"description": "(Required) "
+												},
+												{
+													"key": "pattern",
+													"value": "",
+													"description": "A number pattern to search for."
+												},
+												{
+													"key": "search_pattern",
+													"value": "",
+													"description": "Strategy for matching pattern. Expected values: 0 (starts with, default), 1 (anywhere), 2 (ends with)."
+												},
+												{
+													"key": "type",
+													"value": "mobile-lvn",
+													"description": "The type of number to search for. By default it takes landline."
+												},
+												{
+													"key": "features",
+													"value": "SMS,SMS"
+												},
+												{
+													"key": "features",
+													"value": "SMS,VOICE"
+												},
+												{
+													"key": "size",
+													"value": "10",
+													"description": "Page size"
+												},
+												{
+													"key": "index",
+													"value": "1",
+													"description": "Page index"
+												}
+											]
+										},
+										"description": "Retrieve inbound numbers that are available for a given country."
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"count\": \"<integer>\",\n  \"numbers\": [\n    {\n      \"country\": \"{{country_field}}\",\n      \"features\": [\n        \"SMS\",\n        \"VOICE\"\n      ],\n      \"msisdn\": \"{{msisdn_field}}\",\n      \"type\": \"<string>\",\n      \"moHttpUrl\": \"\",\n      \"voiceCallbackType\": \"tel\",\n      \"voiceCallbackValue\": \"\"\n    },\n    {\n      \"country\": \"{{country_field}}\",\n      \"features\": [\n        \"SMS\",\n        \"VOICE\"\n      ],\n      \"msisdn\": \"{{msisdn_field}}\",\n      \"type\": \"<string>\",\n      \"moHttpUrl\": \"\",\n      \"voiceCallbackType\": \"app\",\n      \"voiceCallbackValue\": \"\"\n    }\n  ]\n}"
+								}
+							]
+						}
+					],
+					"id": "c789723d-166a-466e-b9da-605542f17b80"
+				},
+				{
+					"name": "cancel",
+					"item": [
+						{
+							"name": "Cancel a number",
+							"id": "c6c3f1aa-a539-4a74-96f0-9f0e1421c3cc",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"description": "(Required) The two character country code in ISO 3166-1 alpha-2 format.",
+											"key": "country",
+											"value": "{{country_field}}"
+										},
+										{
+											"description": "(Required) An available inbound virtual number.",
+											"key": "msisdn",
+											"value": "{{msisdn_field}}"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/number/cancel",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"number",
+										"cancel"
+									]
+								},
+								"description": "Cancel your subscription for a specific inbound number."
+							},
+							"response": [
+								{
+									"id": "f947b867-8992-4319-9147-c5d529067014",
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/x-www-form-urlencoded"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"description": "(Required) The two character country code in ISO 3166-1 alpha-2 format.",
+													"key": "country",
+													"value": "{{country_field}}"
+												},
+												{
+													"description": "(Required) An available inbound virtual number.",
+													"key": "msisdn",
+													"value": "{{msisdn_field}}"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/number/cancel",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"number",
+												"cancel"
+											]
+										},
+										"description": "Cancel your subscription for a specific inbound number."
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error-code\": \"<string>\",\n  \"error-code-label\": \"<string>\"\n}"
+								}
+							]
+						}
+					],
+					"id": "cbeb2860-77ec-45cd-9e57-3ce7e859cf87"
+				},
+				{
+					"name": "buy",
+					"item": [
+						{
+							"name": "Buy a number",
+							"id": "2dd16268-5852-407f-8196-4feae61b68fb",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"description": "(Required) The two character country code in ISO 3166-1 alpha-2 format.",
+											"key": "country",
+											"value": "{{country_field}}"
+										},
+										{
+											"description": "(Required) An available inbound virtual number.",
+											"key": "msisdn",
+											"value": "{{msisdn_field}}"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/number/buy",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"number",
+										"buy"
+									]
+								},
+								"description": "Request to purchase a specific inbound number."
+							},
+							"response": [
+								{
+									"id": "bdb4fbc3-7bdf-4d2d-b886-3b08a2a2afa7",
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/x-www-form-urlencoded"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"description": "(Required) The two character country code in ISO 3166-1 alpha-2 format.",
+													"key": "country",
+													"value": "{{country_field}}"
+												},
+												{
+													"description": "(Required) An available inbound virtual number.",
+													"key": "msisdn",
+													"value": "{{msisdn_field}}"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{baseUrl}}/number/buy",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"number",
+												"buy"
+											]
+										},
+										"description": "Request to purchase a specific inbound number."
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"error-code\": \"<string>\",\n  \"error-code-label\": \"<string>\"\n}"
+								}
+							]
+						}
+					],
+					"id": "5ba24178-a069-4b60-9ac6-cb4baa41a018"
+				}
+			],
+			"id": "c654606f-708d-4056-a4ff-5791a8de1a20"
+		},
+		{
+			"name": "account",
+			"item": [
+				{
+					"name": "numbers",
+					"item": [
+						{
+							"name": "List owned numbers",
+							"id": "299f9bce-5bca-4632-a51c-cb6916cc79fe",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/account/numbers?index=1&size=10&pattern=&search_pattern=",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"account",
+										"numbers"
+									],
+									"query": [
+										{
+											"key": "index",
+											"value": "1",
+											"description": "Page index"
+										},
+										{
+											"key": "size",
+											"value": "10",
+											"description": "Page size"
+										},
+										{
+											"key": "pattern",
+											"value": "",
+											"description": "A number pattern to search for."
+										},
+										{
+											"key": "search_pattern",
+											"value": "",
+											"description": "Strategy for matching pattern. Expected values: 0 (starts with, default), 1 (anywhere), 2 (ends with)."
+										}
+									]
+								},
+								"description": "Retrieve all the inbound numbers associated with your Nexmo account."
+							},
+							"response": [
+								{
+									"id": "357178fa-8741-4daf-b847-773eda63062e",
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/account/numbers?index=1&size=10&pattern=&search_pattern=",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"account",
+												"numbers"
+											],
+											"query": [
+												{
+													"key": "index",
+													"value": "1",
+													"description": "Page index"
+												},
+												{
+													"key": "size",
+													"value": "10",
+													"description": "Page size"
+												},
+												{
+													"key": "pattern",
+													"value": "",
+													"description": "A number pattern to search for."
+												},
+												{
+													"key": "search_pattern",
+													"value": "",
+													"description": "Strategy for matching pattern. Expected values: 0 (starts with, default), 1 (anywhere), 2 (ends with)."
+												}
+											]
+										},
+										"description": "Retrieve all the inbound numbers associated with your Nexmo account."
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"count\": \"<integer>\",\n  \"numbers\": [\n    {\n      \"country\": \"{{country_field}}\",\n      \"features\": [\n        \"SMS\",\n        \"VOICE\"\n      ],\n      \"msisdn\": \"{{msisdn_field}}\",\n      \"type\": \"<string>\",\n      \"moHttpUrl\": \"\",\n      \"voiceCallbackType\": \"tel\",\n      \"voiceCallbackValue\": \"\"\n    },\n    {\n      \"country\": \"{{country_field}}\",\n      \"features\": [\n        \"SMS\",\n        \"VOICE\"\n      ],\n      \"msisdn\": \"{{msisdn_field}}\",\n      \"type\": \"<string>\",\n      \"moHttpUrl\": \"\",\n      \"voiceCallbackType\": \"app\",\n      \"voiceCallbackValue\": \"\"\n    }\n  ]\n}"
+								}
+							]
+						}
+					],
+					"id": "0aafd0d6-22c7-42d2-be2d-2b8a4403ef07"
+				}
+			],
+			"id": "fc33f265-d859-4b1d-a10e-296c701c510e"
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "client_authentication",
+				"value": "body",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "https://api-prd.kpn.com/oauth/client_credential/accesstoken?grant_type=client_credentials",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "{{client_secret}}",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "{{client_id}}",
+				"type": "string"
+			},
+			{
+				"key": "tokenName",
+				"value": "access_token",
+				"type": "string"
+			},
+			{
+				"key": "challengeAlgorithm",
+				"value": "S256",
+				"type": "string"
+			},
+			{
+				"key": "grant_type",
+				"value": "client_credentials",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "31e7ab13-96bc-4f8b-8a8e-9579baa92b34",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "d8194cb4-9378-4014-99ee-495c1b6f841d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "d5ccfec8-ff96-4485-a6dc-6cf5e767b7d2",
+			"key": "baseUrl",
+			"value": "https://api-prd.kpn.com/communication/nexmo/phone-numbers"
+		},
+		{
+			"id": "5af09145-03cf-43f0-aaff-a77d29932117",
+			"key": "client_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "7ba44567-85b4-43a5-b181-cca2e1fa7472",
+			"key": "client_secret",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "d9ea2040-acfd-4e8b-949c-0b5b7ce6b034",
+			"key": "country_field",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "4ab6f01d-9a94-4792-a160-052a14f5bde2",
+			"key": "msisdn_field",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "93052835-b5cf-48ad-8944-285a1f1613ed",
+			"key": "country",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

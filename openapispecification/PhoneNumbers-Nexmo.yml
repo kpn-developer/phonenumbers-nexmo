@@ -1,0 +1,469 @@
+---
+openapi: 3.0.0
+info:
+  title: Phone Numbers - Nexmo
+  description: |-
+    The Numbers API lets you manage your numbers and buy new virtual numbers for use with Nexmo's APIs.
+    ## Prerequirement:
+    Your project has to be in the production environment in order to use of this API.
+    For any questions, please contact our support team.
+
+    ---
+    ## [KPN API Store](https://developer.kpn.com/)<br/> [Getting Started](https://developer.kpn.com/getting-started)
+
+
+       ---
+  termsOfService: https://developer.kpn.com/legal
+  contact:
+    name: API Support
+    url: https://developer.kpn.com/support
+    email: api_developer@kpn.com
+  version: v1.1.1
+externalDocs:
+  description: HTTP response headers
+  url: https://developer.kpn.com/documentation-response-headers
+servers:
+- url: https://api-prd.kpn.com/communication/nexmo/phone-numbers
+tags:
+- name: account
+  description: number management from accounts
+- name: number
+  description: numbers operations
+paths:
+  /account/numbers:
+    get:
+      tags:
+      - account
+      summary: List owned numbers
+      description: Retrieve all the inbound numbers associated with your Nexmo account.
+      operationId: getNumbers
+      parameters:
+      - name: index
+        in: query
+        description: Page index
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          example: 0
+          default: 1
+      - name: size
+        in: query
+        description: Page size
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 100
+          type: integer
+          default: 10
+      - name: pattern
+        in: query
+        description: A number pattern to search for.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: ""
+      - name: search_pattern
+        in: query
+        description: "Strategy for matching pattern. Expected values: 0 (starts with, default), 1 (anywhere), 2 (ends with)."
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 2
+          minimum: 0
+          type: integer
+          default: ""
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+      security:
+      - oauth2: []
+  /number/search:
+    get:
+      tags:
+      - number
+      summary: Search available numbers
+      description: Retrieve inbound numbers that are available for a given country.
+      operationId: searchNumbers
+      parameters:
+      - name: country
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: "{{country}}"
+      - name: pattern
+        in: query
+        description: A number pattern to search for.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: ""
+      - name: search_pattern
+        in: query
+        description: "Strategy for matching pattern. Expected values: 0 (starts with, default), 1 (anywhere), 2 (ends with)."
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 2
+          minimum: 0
+          type: integer
+          default: ""
+      - name: type
+        in: query
+        description: The type of number to search for. By default it takes landline.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          enum:
+          - landline
+          - landline-toll-free
+          - mobile-lvn
+      - name: features
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/feature_field'
+      - name: size
+        in: query
+        description: Page size
+        required: false
+        style: form
+        explode: true
+        schema:
+          maximum: 100
+          type: integer
+          default: 10
+      - name: index
+        in: query
+        description: Page index
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          example: 0
+          default: 1
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+      security:
+      - oauth2: []
+  /number/buy:
+    post:
+      tags:
+      - number
+      summary: Buy a number
+      description: Request to purchase a specific inbound number.
+      operationId: buyNumber
+      requestBody:
+        $ref: '#/components/requestBodies/buy_cancel_number_request'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+      security:
+      - oauth2: []
+  /number/cancel:
+    post:
+      tags:
+      - number
+      summary: Cancel a number
+      description: Cancel your subscription for a specific inbound number.
+      operationId: cancelNumber
+      requestBody:
+        $ref: '#/components/requestBodies/buy_cancel_number_request'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+      security:
+      - oauth2: []
+  /number/update:
+    post:
+      tags:
+      - number
+      summary: Update a number
+      description: Change the behaviour of a number that you own
+      operationId: updateNumber
+      requestBody:
+        $ref: '#/components/requestBodies/update_number'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+      security:
+      - oauth2: []
+components:
+  schemas:
+    number:
+      required:
+      - country
+      - features
+      - msisdn
+      - type
+      type: object
+      properties:
+        country:
+          $ref: '#/components/schemas/country_field'
+        msisdn:
+          $ref: '#/components/schemas/msisdn_field'
+        moHttpUrl:
+          $ref: '#/components/schemas/moHttpUrl_field'
+        type:
+          type: string
+          example: mobile-lvn
+        features:
+          $ref: '#/components/schemas/feature_field'
+        voiceCallbackType:
+          $ref: '#/components/schemas/voiceCallbackType_field'
+        voiceCallbackValue:
+          $ref: '#/components/schemas/voiceCallbackValue_field'
+    buy_cancel_number:
+      required:
+      - country
+      - msisdn
+      type: object
+      properties:
+        country:
+          $ref: '#/components/schemas/country_field'
+        msisdn:
+          $ref: '#/components/schemas/msisdn_field'
+      description: The JSON object to request or cancel a number
+    update_number:
+      required:
+      - country
+      - msisdn
+      type: object
+      properties:
+        country:
+          $ref: '#/components/schemas/country_field'
+        msisdn:
+          $ref: '#/components/schemas/msisdn_field'
+        moHttpUr:
+          $ref: '#/components/schemas/moHttpUrl_field'
+        moSmppSysType:
+          $ref: '#/components/schemas/moSmppSysType_field'
+        voiceCallbackType:
+          $ref: '#/components/schemas/voiceCallbackType_field'
+        voiceCallbackValue:
+          $ref: '#/components/schemas/voiceCallbackValue_field'
+        voiceStatusCallback:
+          $ref: '#/components/schemas/voiceStatusCallback_field'
+      description: The JSON object to request an update of a phone number
+    moHttpUrl_field:
+      type: string
+      description: "An URL encoded URI to the webhook endpoint that handles inbound messages. Your webhook endpoint must be active before you make this request, Nexmo makes a `GET` request to your endpoint and checks that it returns a `200 OK` response. Set to empty string to clear."
+      format: url
+      example: https://example.com/mo
+      default: ""
+    moSmppSysType_field:
+      type: string
+      description: The associated system type for your SMPP client. For example `inbound`.
+      example: inbount
+      default: ""
+    voiceCallbackType_field:
+      type: string
+      description: The voice webhook type. To be used together with `voiceCallbackValue`
+      example: app
+      enum:
+      - sip
+      - tel
+      - app
+    voiceCallbackValue_field:
+      type: string
+      description: "A SIP URI, telephone number or Application ID. To be used together with `voiceCallbackType`"
+      example: aaaaaaaa-bbbb-cccc-dddd-0123456789ab
+      default: ""
+    voiceStatusCallback_field:
+      type: string
+      description: A webhook URI for Nexmo to send a request to when a call ends.
+      format: url
+      default: ""
+    country_field:
+      type: string
+      description: The two character country code in ISO 3166-1 alpha-2 format.
+      example: NL
+      default: "{{country_field}}"
+    msisdn_field:
+      type: string
+      description: An available inbound virtual number.
+      format: number
+      example: "31612345789"
+      default: "{{msisdn_field}}"
+    feature_field:
+      type: array
+      description: "Available features are SMS and VOICE. For both features, use a comma-separated value SMS,VOICE."
+      example:
+      - VOICE
+      - SMS
+      items:
+        type: string
+        enum:
+        - VOICE
+        - SMS
+    inline_response_200:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: The total amount of numbers that satisfies the requirements.
+        numbers:
+          type: array
+          description: A paginated array of available numbers and their details.
+          items:
+            $ref: '#/components/schemas/number'
+    inline_response_200_1:
+      type: object
+      properties:
+        error-code:
+          type: string
+          format: integer
+        error-code-label:
+          type: string
+      example:
+      - error-code: "200"
+        error-code-label: success
+  responses:
+    number_list:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_200'
+    ok_answer:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_response_200_1'
+  parameters:
+    index_query_param:
+      name: index
+      in: query
+      description: Page index
+      required: false
+      style: form
+      explode: true
+      schema:
+        type: integer
+        example: 0
+        default: 1
+    size_query_param:
+      name: size
+      in: query
+      description: Page size
+      required: false
+      style: form
+      explode: true
+      schema:
+        maximum: 100
+        type: integer
+        default: 10
+    pattern_query_param:
+      name: pattern
+      in: query
+      description: A number pattern to search for.
+      required: false
+      style: form
+      explode: true
+      schema:
+        type: string
+        default: ""
+    search_pattern_query_param:
+      name: search_pattern
+      in: query
+      description: "Strategy for matching pattern. Expected values: 0 (starts with, default), 1 (anywhere), 2 (ends with)."
+      required: false
+      style: form
+      explode: true
+      schema:
+        maximum: 2
+        minimum: 0
+        type: integer
+        default: ""
+    country_query_param:
+      name: country
+      in: query
+      required: true
+      style: form
+      explode: true
+      schema:
+        type: string
+    number_type_query_param:
+      name: type
+      in: query
+      description: The type of number to search for. By default it takes landline.
+      required: false
+      style: form
+      explode: true
+      schema:
+        type: string
+        enum:
+        - landline
+        - landline-toll-free
+        - mobile-lvn
+    features_query_param:
+      name: features
+      in: query
+      required: false
+      style: form
+      explode: true
+      schema:
+        type: array
+        items:
+          $ref: '#/components/schemas/feature_field'
+  requestBodies:
+    buy_cancel_number_request:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/buy_cancel_number'
+          example:
+          - country: NL
+            msisdn: "31612345789"
+    update_number:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/update_number'
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api-prd.kpn.com/oauth/client_credential/accesstoken?grant_type=client_credentials
+          scopes: {}
