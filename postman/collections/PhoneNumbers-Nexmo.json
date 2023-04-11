@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "e057f32e-9ba8-4ee8-a716-37f79dd679fd",
 		"name": "PhoneNumbers-Nexmo",
-		"description": "The Numbers API lets you manage your numbers and buy new virtual numbers for use with Nexmo's APIs.\n## Prerequirement:\nYour project has to be in the production environment in order to use of this API.\nFor any questions, please contact our support team.\n\n---\n## [KPN API Store](https://developer.kpn.com/)<br/> [Getting Started](https://developer.kpn.com/getting-started)\n\n\n   ---\n\nContact Support:\n Name: API Support\n Email: api_developer@kpn.com",
+		"description": "The Numbers API lets you manage your numbers and buy new virtual numbers for use with Nexmo's APIs.\n\n## Prerequirement:\n\nYour project has to be in the production environment in order to use of this API.  \nFor any questions, please contact our support team.\n\n---\n\n## [KPN Developer](https://developer.kpn.com/)\n\n[Getting Started](https://developer.kpn.com/getting-started)\n\n---\n\nContact Support:  \nName: API Support  \nEmail: [api_developer@kpn.com](mailto:api_developer@kpn.com)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_uid": "4406147-e057f32e-9ba8-4ee8-a716-37f79dd679fd"
 	},
